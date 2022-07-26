@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Jul 27, 2022 at 01:27 AM
--- Server version: 10.4.21-MariaDB
--- PHP Version: 8.0.11
+-- Host: localhost
+-- Generation Time: Jul 26, 2022 at 11:53 PM
+-- Server version: 5.7.38-41-log
+-- PHP Version: 7.4.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `lmp_db`
+-- Database: `dbve7kvmocjtn4`
 --
 
 -- --------------------------------------------------------
@@ -106,15 +106,15 @@ CREATE TABLE `data_rows` (
   `field` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `display_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `required` tinyint(1) NOT NULL DEFAULT 0,
-  `browse` tinyint(1) NOT NULL DEFAULT 1,
-  `read` tinyint(1) NOT NULL DEFAULT 1,
-  `edit` tinyint(1) NOT NULL DEFAULT 1,
-  `add` tinyint(1) NOT NULL DEFAULT 1,
-  `delete` tinyint(1) NOT NULL DEFAULT 1,
-  `details` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `order` int(11) NOT NULL DEFAULT 1,
-  `visibility` int(1) DEFAULT 1
+  `required` tinyint(1) NOT NULL DEFAULT '0',
+  `browse` tinyint(1) NOT NULL DEFAULT '1',
+  `read` tinyint(1) NOT NULL DEFAULT '1',
+  `edit` tinyint(1) NOT NULL DEFAULT '1',
+  `add` tinyint(1) NOT NULL DEFAULT '1',
+  `delete` tinyint(1) NOT NULL DEFAULT '1',
+  `details` text COLLATE utf8mb4_unicode_ci,
+  `order` int(11) NOT NULL DEFAULT '1',
+  `visibility` int(1) DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -208,9 +208,9 @@ CREATE TABLE `data_types` (
   `policy_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `controller` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `description` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `generate_permissions` tinyint(1) NOT NULL DEFAULT 0,
-  `server_side` tinyint(4) NOT NULL DEFAULT 0,
-  `details` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `generate_permissions` tinyint(1) NOT NULL DEFAULT '0',
+  `server_side` tinyint(4) NOT NULL DEFAULT '0',
+  `details` text COLLATE utf8mb4_unicode_ci,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -292,7 +292,7 @@ CREATE TABLE `failed_jobs` (
   `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -335,7 +335,7 @@ CREATE TABLE `menu_items` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `route` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `parameters` text COLLATE utf8mb4_unicode_ci DEFAULT NULL
+  `parameters` text COLLATE utf8mb4_unicode_ci
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -639,7 +639,7 @@ CREATE TABLE `personal_access_tokens` (
   `tokenable_id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `token` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `abilities` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `abilities` text COLLATE utf8mb4_unicode_ci,
   `last_used_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -679,10 +679,10 @@ CREATE TABLE `settings` (
   `id` int(10) UNSIGNED NOT NULL,
   `key` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `display_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `value` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `details` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `value` text COLLATE utf8mb4_unicode_ci,
+  `details` text COLLATE utf8mb4_unicode_ci,
   `type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `order` int(11) NOT NULL DEFAULT 1,
+  `order` int(11) NOT NULL DEFAULT '1',
   `group` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -715,7 +715,7 @@ CREATE TABLE `student_details` (
   `id` int(10) UNSIGNED NOT NULL,
   `student_id` int(11) NOT NULL,
   `center_id` int(11) NOT NULL,
-  `status` int(11) DEFAULT 0 COMMENT '0 => Applicant,\r\n',
+  `status` int(11) DEFAULT '0' COMMENT '0 => Applicant,\r\n',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `f_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -728,7 +728,7 @@ CREATE TABLE `student_details` (
   `age` int(11) DEFAULT NULL,
   `e_contact` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `e_country_code` varchar(11) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `address` longtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `address` longtext COLLATE utf8mb4_unicode_ci,
   `edu_level` int(11) DEFAULT NULL,
   `edu_degree` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `edu_awarding_body` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -826,7 +826,7 @@ CREATE TABLE `users` (
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `settings` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `settings` text COLLATE utf8mb4_unicode_ci,
   `created_by` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -837,12 +837,13 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `role_id`, `name`, `email`, `tel`, `country_code`, `dob`, `country_id`, `city_id`, `avatar`, `email_verified_at`, `password`, `remember_token`, `settings`, `created_by`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Admin', 'admin@admin.com', NULL, NULL, NULL, NULL, NULL, 'users/default.png', NULL, '$2y$10$sKhp36p.MVNQ2omRBYGgjOBBaQ4sB/tlI6XKoA9J2v7JiglqN9ksS', 'EhUSwCxgLzgEYgH8QPnLyt6asSmVAP4FzQFJNQAX69DDcsqwUmFD0IM1crAG', '{\"locale\":\"en\"}', NULL, '2022-06-15 10:09:23', '2022-07-01 04:14:20'),
-(3, 4, 'Al Kafi Sohag', 'dev1@gmail.com', NULL, NULL, NULL, NULL, NULL, 'users\\July2022\\uLZ3KMEfTmZ6oifHN42w.jpg', NULL, '$2y$10$/1FzN.5Y0ReS/vcPOubvXeuyefdM18ZwRaa7bpTVZ1wpNjS0qxOn6', 'gd4CoEJuFR35jd7pP4RSmRCiZgEqb7c3E98cDIHGjdXVKUZ2HkeeXg1LB4dO', '{\"locale\":\"en\"}', NULL, '2022-06-24 14:38:11', '2022-07-01 08:11:27'),
+(1, 1, 'Admin', 'admin@admin.com', NULL, NULL, NULL, NULL, NULL, 'users/default.png', NULL, '$2y$10$Ya1glilZ.PiRc3KLtkx2w.MffwpTR8sOx6pXKEvYNxxoW6V8Y.VyO', 'EhUSwCxgLzgEYgH8QPnLyt6asSmVAP4FzQFJNQAX69DDcsqwUmFD0IM1crAG', '{\"locale\":\"en\"}', NULL, '2022-06-15 10:09:23', '2022-07-26 23:40:16'),
+(3, 4, 'Al Kafi Sohag', 'dev1@gmail.com', NULL, NULL, NULL, NULL, NULL, 'users\\July2022\\uLZ3KMEfTmZ6oifHN42w.jpg', NULL, '$2y$10$/1FzN.5Y0ReS/vcPOubvXeuyefdM18ZwRaa7bpTVZ1wpNjS0qxOn6', 'ozOVDM2WNJBykeitXvOtJ5UwwdmwwJG9BuW4DB0yNBCzmKeBzjJvF4wFu1AL', '{\"locale\":\"en\"}', NULL, '2022-06-24 14:38:11', '2022-07-01 08:11:27'),
 (4, 5, 'Director 1', 'director1@gmial.com', NULL, NULL, NULL, NULL, NULL, 'users/default.png', NULL, '$2y$10$uDq0dvHNLHQK3ENiws/.vO0VT8CBZ2G9gUQI.nYaqxxMiadNjFoY2', NULL, '{\"locale\":\"en\"}', NULL, '2022-06-25 13:02:14', '2022-06-25 13:02:14'),
 (5, 5, 'Director 2', 'director2@gmial.com', NULL, NULL, NULL, NULL, NULL, 'users/default.png', NULL, '$2y$10$EFU60V.ZmNzsG8r1JmGkOuGsMI0PEHaZrCE9tsU3ahH7ABISyO1M6', NULL, '{\"locale\":\"en\"}', NULL, '2022-06-26 06:59:10', '2022-06-26 06:59:10'),
 (6, 3, 'AL KAFI SOHAG', 'aksohag16@gmail.com', '1773-301138', '880', NULL, 2, 2, 'users/default.png', NULL, '$2y$10$m4QXyYHJVaayBmhIwwY8JepyKcgkzlEaK.3EPdagHX9jbywZGFkmm', NULL, NULL, NULL, '2022-06-26 16:49:05', '2022-06-26 16:49:05'),
-(7, 3, 'Student 1', 'student1@gmail.com', '1773-30113X', '880', '2001-02-15', 1, 1, 'users/default.png', NULL, '$2y$10$uUzPcY2774duI566r4GYPOIXsJeqBJJ21aLLJFy0YteKd59b0AGcS', 'uR71qMsKPXVJsccv9JCirdCvbcfH0RCxXl4kkyyrfKGwesNSP6fPcZtV4dbQ', NULL, NULL, '2022-06-26 16:56:40', '2022-06-26 16:56:40');
+(7, 3, 'Student 1', 'student1@gmail.com', '1773-30113X', '880', '2001-02-15', 1, 1, 'users/default.png', NULL, '$2y$10$uUzPcY2774duI566r4GYPOIXsJeqBJJ21aLLJFy0YteKd59b0AGcS', 'ltOVeemaWf0VIv9qUKXm4SMKJO5VeUFtup3Nuhdrh29KhgjJ3QA1tZI2n1po', NULL, NULL, '2022-06-26 16:56:40', '2022-06-26 16:56:40'),
+(8, 4, 'Developer 2', 'dev2@gmail.com', NULL, NULL, NULL, NULL, NULL, 'users/default.png', NULL, '$2y$10$/g/sqiQhQYzq7w.az2kQhehWsJ.8kZtPK6l9HWOKuHCX7HYfLj1Ra', NULL, '{\"locale\":\"en\"}', NULL, '2022-07-26 23:41:55', '2022-07-26 23:41:55');
 
 -- --------------------------------------------------------
 
@@ -1113,7 +1114,7 @@ ALTER TABLE `translations`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Constraints for dumped tables
