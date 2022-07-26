@@ -1,0 +1,10 @@
+/*===========================================device 480px =============================*/
+
+
+@media only screen and (max-width: 480px) {
+/********************Notification****************/
+    .navbar .notification .dropdown-menu {
+        width: 290px !important;
+        left: -205% !important;
+    }
+  }
